@@ -254,3 +254,85 @@
         transition: none;
     }
 }
+
+/* ============================================================
+   ERROR 404
+   Misma identidad del sistema: papel hueso, tinta verde-negra,
+   Fraunces para el número grande, salvia/arcilla como acento.
+   El "404" se trata como una mancha tipográfica orgánica, no
+   como un ícono genérico de error.
+   ============================================================ */
+.error-404 {
+    --ink: #20241f;
+    --ink-soft: #4a5148;
+    --paper: #f3f0e6;
+    --sage: #6f8a68;
+    --clay: #a15c38;
+
+    font-family: 'Inter', sans-serif;
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    text-align: center;
+    padding: 60px 24px;
+    position: relative;
+}
+
+/* Mancha orgánica difusa detrás del número, coherente con el
+   resto del sistema (nav y bloque de inicio). */
+.error-404::before {
+    content: '';
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    background: radial-gradient(circle, var(--sage) 0%, transparent 70%);
+    opacity: 0.16;
+    border-radius: 58% 42% 65% 35% / 45% 55% 45% 55%;
+    filter: blur(10px);
+    z-index: 0;
+}
+
+.error-404 h1 {
+    position: relative;
+    z-index: 1;
+    font-family: 'Fraunces', serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-size: 5rem;
+    line-height: 1;
+    margin: 0;
+    color: var(--ink);
+    letter-spacing: -1.5px;
+}
+
+/* Detalle de firma: el "4" central o el guion se lee como un
+   trazo de arcilla, no como texto de error genérico rojo. */
+.error-404 h1::after {
+    content: '';
+    display: block;
+    width: 46px;
+    height: 4px;
+    margin: 16px auto 0;
+    background: var(--clay);
+    border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%;
+    opacity: 0.85;
+}
+
+.error-404 p {
+    position: relative;
+    z-index: 1;
+    color: var(--ink-soft);
+    font-size: 1.05rem;
+    max-width: 380px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .error-404::before {
+        filter: none;
+    }
+}

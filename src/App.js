@@ -1,6 +1,7 @@
 import { NavLink, Routes, Route } from "react-router";
 import Inicio from "./Componentes/Inicio";
 import About from "./Componentes/About";
+import Error404 from "./Componentes/Error404";
 
 
 const App = () => {
@@ -15,13 +16,14 @@ const App = () => {
 
         <nav>
           <NavLink to="/">Inicio</NavLink>
-          <NavLink to="/Acercade">Acerca de la web</NavLink>
-          <NavLink to="/tienda">Tienda</NavLink>
+          <NavLink to="/Acercade">Acerca de la app-web</NavLink>
+          <NavLink to="/tienda">Tienda de memes</NavLink>
         </nav>
       </header>
 
       <main>
         <Routes>
+          <Route path="*" element={<Error404 />} />
           <Route path="/" element={<Inicio />} />
           <Route path="/Acercade" element={<About />} />
         </Routes>
