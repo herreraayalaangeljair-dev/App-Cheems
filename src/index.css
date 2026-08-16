@@ -1,13 +1,256 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* ============================================================
+   TIPOGRAFÍA
+   Fraunces: serif con carácter para títulos (óptico "soft", con
+   ligera personalidad manuscrita en los cortes).
+   Inter: se mantiene para cuerpo de texto y navegación.
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap');
+
+/* ============================================================
+   TOKENS DE DISEÑO
+   Paleta "atelier botánico": tinta verde-negra, papel hueso,
+   salvia y arcilla apagada. Nada de cream+terracota genérico,
+   nada de neón.
+   ============================================================ */
+.contenedor-general {
+    --ink: #20241f;
+    /* texto principal / títulos */
+    --ink-soft: #4a5148;
+    /* texto secundario */
+    --paper: #f3f0e6;
+    /* fondo base */
+    --paper-soft: #faf8f1;
+    /* superficies elevadas */
+    --sage: #6f8a68;
+    /* acento primario */
+    --sage-deep: #4d6349;
+    /* acento primario, hover/activo */
+    --clay: #a15c38;
+    /* acento cálido, detalles puntuales */
+    --line: rgba(32, 36, 31, 0.1);
+
+    font-family: 'Inter', sans-serif;
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 34px;
+    color: var(--ink);
+    background:
+        radial-gradient(120% 140% at 15% 0%, #faf8f1 0%, var(--paper) 55%, #ece7d8 100%);
+    border-radius: 18px;
+    box-shadow: 0 20px 45px rgba(32, 36, 31, 0.1);
+    position: relative;
+    overflow: hidden;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* Textura sutil de papel: reemplaza el gradiente plano por algo
+   con "grano", sin depender de imágenes externas. */
+.contenedor-general::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.5;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.12  0 0 0 0 0.14  0 0 0 0 0.11  0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.contenedor-general>* {
+    position: relative;
+    z-index: 1;
+}
+
+/* ============================================================
+   ENCABEZADO
+   Se abandona el "glass card" flotante por un encabezado que se
+   asienta sobre el papel: un filete inferior en vez de sombra +
+   blur, más cercano a una cabecera editorial.
+   ============================================================ */
+.contenedor-general header {
+    background: transparent;
+    padding: 10px 6px 26px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    align-items: center;
+}
+
+.contenedor-general h1 {
+    margin: 0;
+    font-family: 'Fraunces', serif;
+    font-size: 2.1rem;
+    font-weight: 600;
+    font-optical-sizing: auto;
+    color: var(--ink);
+    text-align: center;
+    letter-spacing: -0.4px;
+}
+
+.contenedor-titulo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.imagen-cheems-header {
+    width: 100px;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 8px rgba(32, 36, 31, 0.1));
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.imagen-cheems-header:hover {
+    transform: scale(1.15) rotate(6deg);
+}
+
+/* ============================================================
+   NAVEGACIÓN
+   El elemento firma: en vez de una píldora de fondo sólido para
+   el link activo, un subrayado tipo "pincelada" — una forma
+   orgánica que crece desde el centro, no una barra recta.
+   ============================================================ */
+.contenedor-general nav {
+    display: flex;
+    gap: 6px;
+    background: transparent;
+    padding: 0;
+}
+
+.contenedor-general nav a {
+    position: relative;
+    text-decoration: none;
+    color: var(--ink-soft);
+    font-weight: 500;
+    font-size: 0.82rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 10px 16px;
+    border-radius: 6px;
+    transition: color 0.25s ease;
+}
+
+.contenedor-general nav a::after {
+    content: '';
+    position: absolute;
+    left: 14px;
+    right: 14px;
+    bottom: 5px;
+    height: 6px;
+    background: var(--sage);
+    border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%;
+    transform: scaleX(0);
+    transform-origin: center;
+    opacity: 0.55;
+    transition: transform 0.32s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: -1;
+}
+
+.contenedor-general nav a:hover {
+    color: var(--ink);
+}
+
+.contenedor-general nav a:hover::after {
+    transform: scaleX(0.5);
+}
+
+.contenedor-general nav a.active {
+    color: var(--ink);
+    font-weight: 600;
+    background: transparent;
+    box-shadow: none;
+}
+
+.contenedor-general nav a.active::after {
+    transform: scaleX(1);
+    opacity: 0.9;
+    background: var(--clay);
+}
+
+.contenedor-general nav a:focus-visible {
+    outline: 2px solid var(--sage-deep);
+    outline-offset: 3px;
+}
+
+/* ============================================================
+   BLOQUE DE INICIO
+   ============================================================ */
+.contenedor-inicio {
+    background: var(--paper-soft);
+    padding: 48px 40px;
+    border-radius: 14px;
+    border: 1px solid var(--line);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.contenedor-inicio h2 {
+    font-family: 'Fraunces', serif;
+    color: var(--ink);
+    font-size: 1.7rem;
+    font-weight: 600;
+    margin: 0;
+    letter-spacing: -0.3px;
+}
+
+.contenedor-inicio p {
+    color: var(--ink-soft);
+    font-size: 1rem;
+    margin: 0;
+    max-width: 480px;
+    line-height: 1.6;
+}
+
+/* La imagen ya no flota sola con drop-shadow: se apoya sobre una
+   mancha orgánica difusa, coherente con la firma del nav. */
+.contenedor-inicio .imagen-envoltorio {
+    position: relative;
+    margin-top: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contenedor-inicio .imagen-envoltorio::before {
+    content: '';
+    position: absolute;
+    width: 190px;
+    height: 190px;
+    background: radial-gradient(circle, var(--sage) 0%, transparent 70%);
+    opacity: 0.18;
+    border-radius: 58% 42% 65% 35% / 45% 55% 45% 55%;
+    filter: blur(6px);
+    z-index: 0;
+}
+
+.contenedor-inicio img {
+    width: 180px;
+    height: auto;
+    object-fit: contain;
+    position: relative;
+    z-index: 1;
+    filter: drop-shadow(0 10px 18px rgba(32, 36, 31, 0.14));
+    transition: transform 0.35s ease;
+}
+
+.contenedor-inicio img:hover {
+    transform: scale(1.03) rotate(-1deg);
+}
+
+.contenedor-general main {
+    margin-top: 24px;
+}
+
+/* ============================================================
+   ACCESIBILIDAD
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+
+    .contenedor-general nav a::after,
+    .contenedor-inicio img {
+        transition: none;
+    }
 }
