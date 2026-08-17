@@ -12,6 +12,11 @@
    salvia y arcilla apagada. Nada de cream+terracota genérico,
    nada de neón.
    ============================================================ */
+body {
+    background-color: #e5e0d0;
+    margin: 0;
+}
+
 .contenedor-general {
     --ink: #20241f;
     /* texto principal / títulos */
@@ -187,6 +192,16 @@
     gap: 16px;
 }
 
+.contenedor-inicio iframe {
+    width: 100%;
+    max-width: 560px;
+    /* Evita que se haga más grande de su tamaño original */
+    height: auto;
+    aspect-ratio: 16 / 9;
+    /* Mantiene la proporción del video */
+}
+
+
 .contenedor-inicio h2 {
     font-family: 'Fraunces', serif;
     color: var(--ink);
@@ -334,5 +349,151 @@
 @media (prefers-reduced-motion: reduce) {
     .error-404::before {
         filter: none;
+    }
+}
+
+.carrito-contenedor {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    width: 20%;
+    height: 100vh;
+    background-color: var(--paper-soft);
+    border-left: 1px solid var(--line);
+}
+
+.recomendaciones-contenedor {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    width: 20%;
+    height: 100vh;
+    background-color: var(--paper-soft);
+    border-right: 1px solid var(--line);
+}
+
+/* ============================================================
+   GRID DE PRODUCTOS
+   Misma identidad del sistema: papel hueso, tinta verde-negra,
+   Fraunces para el nombre del producto, salvia/arcilla como
+   acento. Las tarjetas se apoyan sobre el papel, sin sombras
+   pesadas ni bordes duros.
+   ============================================================ */
+.productos-contenedor {
+    --ink: #20241f;
+    --ink-soft: #4a5148;
+    --paper-soft: #faf8f1;
+    --sage: #6f8a68;
+    --sage-deep: #4d6349;
+    --clay: #a15c38;
+    --line: rgba(32, 36, 31, 0.1);
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 22px;
+    padding: 10px 0;
+}
+
+.producto {
+    position: relative;
+    background: var(--paper-soft);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 26px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: left;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+/* Mancha orgánica sutil en la esquina, coherente con el resto
+   del sistema (nav, inicio, 404). Aparece solo al hover para no
+   saturar una grilla de muchas tarjetas. */
+.producto::before {
+    content: '';
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle, var(--sage) 0%, transparent 70%);
+    opacity: 0;
+    border-radius: 58% 42% 65% 35% / 45% 55% 45% 55%;
+    filter: blur(8px);
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+}
+
+.producto:hover {
+    transform: translateY(-4px);
+    border-color: rgba(111, 138, 104, 0.35);
+    box-shadow: 0 14px 30px rgba(32, 36, 31, 0.1);
+}
+
+.producto:hover::before {
+    opacity: 0.5;
+}
+
+.producto h3 {
+    position: relative;
+    z-index: 1;
+    font-family: 'Fraunces', serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-size: 1.15rem;
+    color: var(--ink);
+    margin: 0;
+    letter-spacing: -0.2px;
+}
+
+.producto p {
+    position: relative;
+    z-index: 1;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--clay);
+    margin: 0 0 6px;
+}
+
+.btn-agregar {
+    position: relative;
+    z-index: 1;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--paper-soft);
+    background: var(--sage);
+    border: none;
+    border-radius: 8px;
+    padding: 11px 16px;
+    cursor: pointer;
+    margin-top: auto;
+    transition: background 0.25s ease, transform 0.2s ease;
+}
+
+.btn-agregar:hover {
+    background: var(--sage-deep);
+}
+
+.btn-agregar:active {
+    transform: scale(0.97);
+}
+
+.btn-agregar:focus-visible {
+    outline: 2px solid var(--sage-deep);
+    outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .producto,
+    .producto::before,
+    .btn-agregar {
+        transition: none;
     }
 }

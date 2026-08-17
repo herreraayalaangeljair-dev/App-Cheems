@@ -2,6 +2,7 @@ import { NavLink, Routes, Route } from "react-router";
 import Inicio from "./Componentes/Inicio";
 import About from "./Componentes/About";
 import Error404 from "./Componentes/Error404";
+import Tienda from "./Componentes/Tienda";
 
 
 const App = () => {
@@ -26,10 +27,17 @@ const App = () => {
           <Route path="*" element={<Error404 />} />
           <Route path="/" element={<Inicio />} />
           <Route path="/Acercade" element={<About />} />
+          <Route path="/tienda" element={<Tienda />} />
         </Routes>
-
       </main>
 
+      <aside className="recomendaciones-contenedor">
+        <h4>Recomendaciones</h4>
+      </aside>
+
+      <aside className="carrito-contenedor">
+        <h4>Carrito</h4>
+      </aside>
 
 
 
