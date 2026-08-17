@@ -44,7 +44,7 @@ body {
     border-radius: 18px;
     box-shadow: 0 20px 45px rgba(32, 36, 31, 0.1);
     position: relative;
-    overflow: hidden;
+    /* overflow: hidden eliminado para que los paneles laterales fixed no queden cortados */
 }
 
 /* Textura sutil de papel: reemplaza el gradiente plano por algo
@@ -354,22 +354,30 @@ body {
 
 .carrito-contenedor {
     position: fixed;
-    bottom: 10px;
-    right: 10px;
-    width: 20%;
+    top: 0;
+    right: 0;
+    width: 22%;
     height: 100vh;
-    background-color: var(--paper-soft);
-    border-left: 1px solid var(--line);
+    background-color: #faf8f1;
+    border-left: 1px solid rgba(32, 36, 31, 0.1);
+    overflow-y: auto;
+    padding: 20px 0;
+    box-shadow: -4px 0 20px rgba(32, 36, 31, 0.06);
+    z-index: 100;
 }
 
-.recomendaciones-contenedor {
+.seccion-todo-contenedor {
     position: fixed;
-    bottom: 10px;
-    left: 10px;
-    width: 20%;
+    top: 0;
+    left: 0;
+    width: 22%;
     height: 100vh;
-    background-color: var(--paper-soft);
-    border-right: 1px solid var(--line);
+    background-color: #faf8f1;
+    border-right: 1px solid rgba(32, 36, 31, 0.1);
+    overflow-y: auto;
+    padding: 20px 0;
+    box-shadow: 4px 0 20px rgba(32, 36, 31, 0.06);
+    z-index: 100;
 }
 
 /* ============================================================
@@ -496,4 +504,94 @@ body {
     .btn-agregar {
         transition: none;
     }
+}
+
+/* ============================================================
+   CONTENEDOR DEL CARRITO
+   Panel que agrupa el título y la lista de ítems (.producto-carrito
+   ya definidos). Incluye el estado vacío tratado como un momento
+   de dirección, no solo un texto gris perdido.
+   ============================================================ */
+.carrito-productos-contenedor {
+    --ink: #20241f;
+    --ink-soft: #4a5148;
+    --paper-soft: #faf8f1;
+    --sage: #6f8a68;
+    --clay: #a15c38;
+    --line: rgba(32, 36, 31, 0.1);
+
+    font-family: 'Inter', sans-serif;
+    width: 100%;
+    background: transparent;
+    padding: 16px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+/* Se usa .carrito-productos-contenedor > h1 para superar la especificidad
+   de .contenedor-general h1 que también aplica a este h1 */
+.carrito-productos-contenedor>h1 {
+    font-family: 'Fraunces', serif !important;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-size: 1.3rem !important;
+    color: #20241f;
+    margin: 0 0 4px !important;
+    letter-spacing: -0.3px;
+    text-align: left !important;
+    position: relative;
+    padding-bottom: 12px;
+}
+
+/* Filete inferior con el mismo trazo orgánico que el resto del
+   sistema, en vez de un simple border-bottom recto. */
+.carrito-productos-contenedor>h1::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 42px;
+    height: 4px;
+    background: #6f8a68;
+    border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%;
+    opacity: 0.8;
+}
+
+/* Tarjeta de cada ítem dentro del carrito */
+.producto-carrito {
+    background: white;
+    border: 1px solid rgba(32, 36, 31, 0.1);
+    border-radius: 10px;
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.productp-nombre-contenedor h5 {
+    font-family: 'Fraunces', serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #20241f;
+    margin: 0;
+}
+
+.producto-carrito p {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.82rem;
+    color: #4a5148;
+    margin: 0;
+}
+
+/* Estado vacío: invitación a actuar, no un texto perdido. */
+.carrito-productos-contenedor>p {
+    text-align: center;
+    color: #4a5148;
+    font-size: 0.9rem;
+    padding: 28px 12px;
+    border: 1px dashed rgba(32, 36, 31, 0.15);
+    border-radius: 10px;
+    margin: 0;
+    position: relative;
 }

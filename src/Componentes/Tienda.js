@@ -1,10 +1,10 @@
 import Productos from "./Productos";
 
-const Tienda = () => {
+const Tienda = ({ agregarAlCarrito }) => {
     return (
         <div>
             <h1>Tienda</h1>
-            <Productos />
+            <Productos agregarAlCarrito={agregarAlCarrito} />
         </div>
     )
 }
