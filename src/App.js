@@ -5,7 +5,6 @@ import About from "./Componentes/About";
 import Error404 from "./Componentes/Error404";
 import Tienda from "./Componentes/Tienda";
 import Carrito from "./Componentes/Carrito";
-import Todo from "./Componentes/Todo";
 
 
 const App = () => {
@@ -42,8 +41,6 @@ const App = () => {
     })
 
   }
-
-
   return (
     <div className="contenedor-general">
       <header>
@@ -69,9 +66,6 @@ const App = () => {
         </Routes>
       </main>
 
-      <aside className="seccion-todo-contenedor">
-        <Todo />
-      </aside>
 
       <aside className="carrito-contenedor">
         <Carrito carrito={carrito} />

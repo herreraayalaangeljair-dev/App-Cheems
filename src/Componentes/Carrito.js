@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import CajaProducto from "../Elementos/CajaProducto";
 const Carrito = ({ carrito }) => {
     return (
         <div className="carrito-productos-contenedor">
@@ -23,4 +24,4 @@ const Carrito = ({ carrito }) => {
     );
 }
 
-export default Carrito;
+export default Carrito; 

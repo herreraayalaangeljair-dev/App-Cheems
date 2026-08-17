@@ -1,17 +1,6 @@
-/* ============================================================
-   TIPOGRAFÍA
-   Fraunces: serif con carácter para títulos (óptico "soft", con
-   ligera personalidad manuscrita en los cortes).
-   Inter: se mantiene para cuerpo de texto y navegación.
-   ============================================================ */
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap');
 
-/* ============================================================
-   TOKENS DE DISEÑO
-   Paleta "atelier botánico": tinta verde-negra, papel hueso,
-   salvia y arcilla apagada. Nada de cream+terracota genérico,
-   nada de neón.
-   ============================================================ */
+
 body {
     background-color: #e5e0d0;
     margin: 0;
@@ -19,19 +8,12 @@ body {
 
 .contenedor-general {
     --ink: #20241f;
-    /* texto principal / títulos */
     --ink-soft: #4a5148;
-    /* texto secundario */
     --paper: #f3f0e6;
-    /* fondo base */
     --paper-soft: #faf8f1;
-    /* superficies elevadas */
     --sage: #6f8a68;
-    /* acento primario */
     --sage-deep: #4d6349;
-    /* acento primario, hover/activo */
     --clay: #a15c38;
-    /* acento cálido, detalles puntuales */
     --line: rgba(32, 36, 31, 0.1);
 
     font-family: 'Inter', sans-serif;
@@ -44,11 +26,9 @@ body {
     border-radius: 18px;
     box-shadow: 0 20px 45px rgba(32, 36, 31, 0.1);
     position: relative;
-    /* overflow: hidden eliminado para que los paneles laterales fixed no queden cortados */
+    right: 200px;
 }
 
-/* Textura sutil de papel: reemplaza el gradiente plano por algo
-   con "grano", sin depender de imágenes externas. */
 .contenedor-general::before {
     content: '';
     position: absolute;
@@ -64,12 +44,7 @@ body {
     z-index: 1;
 }
 
-/* ============================================================
-   ENCABEZADO
-   Se abandona el "glass card" flotante por un encabezado que se
-   asienta sobre el papel: un filete inferior en vez de sombra +
-   blur, más cercano a una cabecera editorial.
-   ============================================================ */
+
 .contenedor-general header {
     background: transparent;
     padding: 10px 6px 26px;
@@ -109,12 +84,7 @@ body {
     transform: scale(1.15) rotate(6deg);
 }
 
-/* ============================================================
-   NAVEGACIÓN
-   El elemento firma: en vez de una píldora de fondo sólido para
-   el link activo, un subrayado tipo "pincelada" — una forma
-   orgánica que crece desde el centro, no una barra recta.
-   ============================================================ */
+
 .contenedor-general nav {
     display: flex;
     gap: 6px;
@@ -177,9 +147,7 @@ body {
     outline-offset: 3px;
 }
 
-/* ============================================================
-   BLOQUE DE INICIO
-   ============================================================ */
+
 .contenedor-inicio {
     background: var(--paper-soft);
     padding: 48px 40px;
@@ -195,10 +163,9 @@ body {
 .contenedor-inicio iframe {
     width: 100%;
     max-width: 560px;
-    /* Evita que se haga más grande de su tamaño original */
     height: auto;
     aspect-ratio: 16 / 9;
-    /* Mantiene la proporción del video */
+
 }
 
 
@@ -219,8 +186,7 @@ body {
     line-height: 1.6;
 }
 
-/* La imagen ya no flota sola con drop-shadow: se apoya sobre una
-   mancha orgánica difusa, coherente con la firma del nav. */
+
 .contenedor-inicio .imagen-envoltorio {
     position: relative;
     margin-top: 18px;
@@ -259,9 +225,7 @@ body {
     margin-top: 24px;
 }
 
-/* ============================================================
-   ACCESIBILIDAD
-   ============================================================ */
+
 @media (prefers-reduced-motion: reduce) {
 
     .contenedor-general nav a::after,
@@ -270,13 +234,7 @@ body {
     }
 }
 
-/* ============================================================
-   ERROR 404
-   Misma identidad del sistema: papel hueso, tinta verde-negra,
-   Fraunces para el número grande, salvia/arcilla como acento.
-   El "404" se trata como una mancha tipográfica orgánica, no
-   como un ícono genérico de error.
-   ============================================================ */
+
 .error-404 {
     --ink: #20241f;
     --ink-soft: #4a5148;
@@ -296,8 +254,6 @@ body {
     position: relative;
 }
 
-/* Mancha orgánica difusa detrás del número, coherente con el
-   resto del sistema (nav y bloque de inicio). */
 .error-404::before {
     content: '';
     position: absolute;
@@ -323,8 +279,6 @@ body {
     letter-spacing: -1.5px;
 }
 
-/* Detalle de firma: el "4" central o el guion se lee como un
-   trazo de arcilla, no como texto de error genérico rojo. */
 .error-404 h1::after {
     content: '';
     display: block;
@@ -380,13 +334,7 @@ body {
     z-index: 100;
 }
 
-/* ============================================================
-   GRID DE PRODUCTOS
-   Misma identidad del sistema: papel hueso, tinta verde-negra,
-   Fraunces para el nombre del producto, salvia/arcilla como
-   acento. Las tarjetas se apoyan sobre el papel, sin sombras
-   pesadas ni bordes duros.
-   ============================================================ */
+
 .productos-contenedor {
     --ink: #20241f;
     --ink-soft: #4a5148;
@@ -402,116 +350,7 @@ body {
     padding: 10px 0;
 }
 
-.producto {
-    position: relative;
-    background: var(--paper-soft);
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 26px 22px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    text-align: left;
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-}
 
-/* Mancha orgánica sutil en la esquina, coherente con el resto
-   del sistema (nav, inicio, 404). Aparece solo al hover para no
-   saturar una grilla de muchas tarjetas. */
-.producto::before {
-    content: '';
-    position: absolute;
-    top: -40px;
-    right: -40px;
-    width: 120px;
-    height: 120px;
-    background: radial-gradient(circle, var(--sage) 0%, transparent 70%);
-    opacity: 0;
-    border-radius: 58% 42% 65% 35% / 45% 55% 45% 55%;
-    filter: blur(8px);
-    transition: opacity 0.35s ease;
-    pointer-events: none;
-}
-
-.producto:hover {
-    transform: translateY(-4px);
-    border-color: rgba(111, 138, 104, 0.35);
-    box-shadow: 0 14px 30px rgba(32, 36, 31, 0.1);
-}
-
-.producto:hover::before {
-    opacity: 0.5;
-}
-
-.producto h3 {
-    position: relative;
-    z-index: 1;
-    font-family: 'Fraunces', serif;
-    font-optical-sizing: auto;
-    font-weight: 600;
-    font-size: 1.15rem;
-    color: var(--ink);
-    margin: 0;
-    letter-spacing: -0.2px;
-}
-
-.producto p {
-    position: relative;
-    z-index: 1;
-    font-family: 'Inter', sans-serif;
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--clay);
-    margin: 0 0 6px;
-}
-
-.btn-agregar {
-    position: relative;
-    z-index: 1;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 500;
-    letter-spacing: 0.03em;
-    text-transform: uppercase;
-    color: var(--paper-soft);
-    background: var(--sage);
-    border: none;
-    border-radius: 8px;
-    padding: 11px 16px;
-    cursor: pointer;
-    margin-top: auto;
-    transition: background 0.25s ease, transform 0.2s ease;
-}
-
-.btn-agregar:hover {
-    background: var(--sage-deep);
-}
-
-.btn-agregar:active {
-    transform: scale(0.97);
-}
-
-.btn-agregar:focus-visible {
-    outline: 2px solid var(--sage-deep);
-    outline-offset: 3px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-
-    .producto,
-    .producto::before,
-    .btn-agregar {
-        transition: none;
-    }
-}
-
-/* ============================================================
-   CONTENEDOR DEL CARRITO
-   Panel que agrupa el título y la lista de ítems (.producto-carrito
-   ya definidos). Incluye el estado vacío tratado como un momento
-   de dirección, no solo un texto gris perdido.
-   ============================================================ */
 .carrito-productos-contenedor {
     --ink: #20241f;
     --ink-soft: #4a5148;
@@ -529,8 +368,6 @@ body {
     gap: 14px;
 }
 
-/* Se usa .carrito-productos-contenedor > h1 para superar la especificidad
-   de .contenedor-general h1 que también aplica a este h1 */
 .carrito-productos-contenedor>h1 {
     font-family: 'Fraunces', serif !important;
     font-optical-sizing: auto;
@@ -544,8 +381,6 @@ body {
     padding-bottom: 12px;
 }
 
-/* Filete inferior con el mismo trazo orgánico que el resto del
-   sistema, en vez de un simple border-bottom recto. */
 .carrito-productos-contenedor>h1::after {
     content: '';
     position: absolute;
@@ -558,7 +393,6 @@ body {
     opacity: 0.8;
 }
 
-/* Tarjeta de cada ítem dentro del carrito */
 .producto-carrito {
     background: white;
     border: 1px solid rgba(32, 36, 31, 0.1);
@@ -584,7 +418,6 @@ body {
     margin: 0;
 }
 
-/* Estado vacío: invitación a actuar, no un texto perdido. */
 .carrito-productos-contenedor>p {
     text-align: center;
     color: #4a5148;

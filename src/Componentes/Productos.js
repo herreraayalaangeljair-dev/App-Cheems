@@ -1,16 +1,18 @@
 import listaProductos from "../Data/Infoproductos";
+import CajaProducto from "../Elementos/CajaProducto";
+import Boton from "../Elementos/Boton";
 
 const Productos = ({ agregarAlCarrito }) => {
     return (
         <div className="productos-contenedor">
             {listaProductos.map((producto) => (
-                <div className="producto" key={producto.id}>
+                <CajaProducto key={producto.id}>
                     <h3>{producto.nombre}</h3>
                     <p>${producto.precio}</p>
-                    <button className="btn-agregar"
+                    <Boton className="btn-agregar"
                         onClick={() => agregarAlCarrito(producto)}
-                    >Agregar al carrito</button>
-                </div>
+                    >Agregar al carrito</Boton>
+                </CajaProducto>
             ))}
         </div>
     );
