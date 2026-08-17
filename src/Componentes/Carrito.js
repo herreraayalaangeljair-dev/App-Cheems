@@ -1,27 +1,27 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
-import CajaProducto from "../Elementos/CajaProducto";
+import ContenedorCarrito from "../Elementos/ContenedorCarrito";
+import ItemCarrito from "../Elementos/ItemCarrito";
+
 const Carrito = ({ carrito }) => {
     return (
-        <div className="carrito-productos-contenedor">
+        <ContenedorCarrito>
             <h1>Carrito</h1>
             {carrito.length > 0
                 ?
                 carrito.map((producto) => {
                     return (
-                        <div className="producto-carrito" key={producto.id}>
-                            <div className="productp-nombre-contenedor">
-                                <h5>{producto.nombre}</h5>
-                            </div>
+                        <ItemCarrito key={producto.id}>
+                            <h5>{producto.nombre}</h5>
                             <p>Cantidad: {producto.cantidad}</p>
-                        </div>
+                        </ItemCarrito>
                     );
                 })
                 :
-                <p> <FontAwesomeIcon icon={faShoppingCart} />El carrito esta vacio</p>
+                <p><FontAwesomeIcon icon={faShoppingCart} /> El carrito esta vacio</p>
             }
-        </div>
+        </ContenedorCarrito>
     );
 }
 
-export default Carrito; 
+export default Carrito;
