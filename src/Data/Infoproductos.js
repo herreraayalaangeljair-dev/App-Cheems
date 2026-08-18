@@ -15,10 +15,6 @@ const listaProductos = [
     { id: 13, nombre: "Cuadermno de notas para tus tareas de amsiedad", precio: 110 },
     { id: 14, nombre: "Tottem bag de tela para el súper", precio: 190 },
     { id: 15, nombre: "Postemr decorativo para tu cuarto", precio: 130 },
-    { id: 16, nombre: "Almohadimta pequeña de Cheems", precio: 320 },
-    { id: 17, nombre: "Pin metálimco para tu mochilmita", precio: 80 },
-    { id: 18, nombre: "Carcasa de tablet con Cheems astronauta", precio: 350 },
-    { id: 19, nombre: "Imán de refrigeramdoro con forma de Cheems", precio: 70 },
     { id: 20, nombre: "Espejmito de bolsillo de Cheems", precio: 100 }
 ]
 
